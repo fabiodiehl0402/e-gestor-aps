@@ -1,0 +1,60 @@
+name: Atualizar e-Gestor APS
+
+on:
+  schedule:
+    # toda segunda-feira e todo dia 15, 06:17 (horário de Brasília)
+    - cron: "17 9 * * 1"
+    - cron: "17 9 15 * *"
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: "Primeira parcela/competência (AAAAMM)"
+        default: "202401"
+      so:
+        description: "Só estes blocos (vazio = todos): financiamento,cobertura,qualidade,suspensao,homologacao"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar
+  cancel-in-progress: false
+
+jobs:
+  extrair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Baixar relatórios públicos
+        id: extrair
+        continue-on-error: true
+        env:
+          DESDE: ${{ github.event.inputs.desde || '202401' }}
+          SO: ${{ github.event.inputs.so || '' }}
+        run: python scripts/extrair.py
+
+      - name: Salvar no repositório
+        run: |
+          git config user.name "robo-e-gestor"
+          git config user.email "robo-e-gestor@users.noreply.github.com"
+          git add dados
+          if git diff --cached --quiet -- dados ':!dados/_atualizacao.json'; then
+            echo "Nenhum dado novo."
+          else
+            git commit -m "Dados e-Gestor APS $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Avisar falha parcial
+        if: steps.extrair.outcome == 'failure'
+        run: |
+          cat dados/_atualizacao.json
+          echo "::error::Algumas consultas falharam. Os períodos com erro serão tentados de novo na próxima execução."
+          exit 1
