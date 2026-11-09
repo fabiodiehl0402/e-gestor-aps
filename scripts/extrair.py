@@ -19,6 +19,7 @@ Saída em dados/ (CSV UTF-8, separador vírgula, compactado .csv.gz):
   suspensao_profissionais/...        profissionais com suspensão
   homologacao_equipes/AAAAMM.csv.gz  foto das equipes homologadas (mês da execução)
   homologacao_estabelecimentos/...   foto dos estabelecimentos homologados
+  maismedicos/AAAAMM.csv.gz          profissionais do Mais Médicos (sem CPF e data de nascimento)
   _arquivos.txt                      índice lido pelo Power BI
 
 Regras:
@@ -56,6 +57,7 @@ DADOS = RAIZ / "dados"
 
 API = "https://relatorioaps-prd.saude.gov.br"
 SIAPS = "https://apisiaps.saude.gov.br"
+MAISMED = "https://sisaps.saude.gov.br/pagamentomaismedicos"
 
 UFS = {
     "11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO",
@@ -284,6 +286,32 @@ def executa_suspensao(desde: str) -> list[str]:
     return erros
 
 
+MM_CAMPOS = [("NO_PROFISSIONAL", "NOME"), ("NO_CICLO", "CICLO"), ("DS_PERFIL", "PERFIL"), ("SG_UF", "UF"),
+             ("CO_MUNICIPIO_IBGE", "IBGE"), ("NO_MUNICIPIO", "MUNICÍPIO"), ("NU_COMPETENCIA", "COMPETÊNCIA"),
+             ("DS_STATUS_PROFISSIONAL", "STATUS DO PROFISSIONAL"), ("DT_INICIO_LICENCA", "DATA INICIO"),
+             ("DT_FIM_LICENCA", "DATA FIM")]
+
+
+def executa_maismedicos(desde: str) -> list[str]:
+    """Relatório público do Pagamento Mais Médicos. CPF e data de nascimento NÃO são gravados."""
+    comps = sorted(c["NU_COMPETENCIA"] for c in http(f"{MAISMED}/relatorio/consultarTodasCompetenciasPublico")
+                   if c.get("NU_COMPETENCIA", "") >= desde)
+    periodos = a_baixar(comps, ["maismedicos"])
+    log(f"[maismedicos] {len(periodos)} período(s)")
+    erros = []
+    for comp in periodos:
+        try:
+            d = http(f"{MAISMED}/relatorio/consultarProfissionaisPublico/S/{comp}")
+        except Exception as e:  # noqa: BLE001
+            erros.append(f"maismedicos {comp}: {e}")
+            continue
+        linhas = [{novo: r.get(orig) for orig, novo in MM_CAMPOS} for r in d or []]
+        if linhas:
+            mudou = grava(f"maismedicos/{comp}", linhas)
+            log(f"[maismedicos] {comp}: {len(linhas)} linhas {'(atualizado)' if mudou else '(sem mudança)'}")
+    return erros
+
+
 def indice():
     arquivos = sorted(str(p.relative_to(DADOS)).replace(os.sep, "/") for p in DADOS.rglob("*.csv.gz"))
     (DADOS / "_arquivos.txt").write_text("\n".join(arquivos) + "\n", encoding="utf-8")
@@ -297,7 +325,7 @@ def main():
     ap.add_argument("--desde", default=os.environ.get("DESDE") or "202401",
                     help="primeira competência/parcela AAAAMM (padrão 202401)")
     ap.add_argument("--so", default=os.environ.get("SO") or "",
-                    help="lista: financiamento,cobertura,qualidade,suspensao,homologacao")
+                    help="lista: financiamento,cobertura,qualidade,suspensao,homologacao,maismedicos")
     ap.add_argument("--ufs", default=os.environ.get("UFS_TESTE") or "",
                     help="restringe UFs (códigos IBGE, só para teste)")
     a = ap.parse_args()
@@ -335,6 +363,11 @@ def main():
         except Exception as e:  # noqa: BLE001
             erros.append(f"{nome}: {e}")
             log(f"[{nome}] ERRO: {e}")
+    if quer("maismedicos"):
+        try:
+            erros += executa_maismedicos(a.desde)
+        except Exception as e:  # noqa: BLE001
+            erros.append(f"maismedicos: {e}")
     if quer("suspensao"):
         try:
             erros += executa_suspensao(a.desde)
