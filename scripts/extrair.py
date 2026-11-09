@@ -20,6 +20,7 @@ Saída em dados/ (CSV UTF-8, separador vírgula, compactado .csv.gz):
   homologacao_equipes/AAAAMM.csv.gz  foto das equipes homologadas (mês da execução)
   homologacao_estabelecimentos/...   foto dos estabelecimentos homologados
   maismedicos/AAAAMM.csv.gz          profissionais do Mais Médicos (sem CPF e data de nascimento)
+  ibge_municipios.csv.gz             perfil dos municípios no Censo 2022 (IBGE/SIDRA)
   _arquivos.txt                      índice lido pelo Power BI
 
 Regras:
@@ -51,6 +52,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import abas_pagamento
+import ibge_municipios
 
 RAIZ = Path(__file__).resolve().parent.parent
 DADOS = RAIZ / "dados"
@@ -325,7 +327,7 @@ def main():
     ap.add_argument("--desde", default=os.environ.get("DESDE") or "202401",
                     help="primeira competência/parcela AAAAMM (padrão 202401)")
     ap.add_argument("--so", default=os.environ.get("SO") or "",
-                    help="lista: financiamento,cobertura,qualidade,suspensao,homologacao,maismedicos")
+                    help="lista: financiamento,cobertura,qualidade,suspensao,homologacao,maismedicos,ibge")
     ap.add_argument("--ufs", default=os.environ.get("UFS_TESTE") or "",
                     help="restringe UFs (códigos IBGE, só para teste)")
     a = ap.parse_args()
@@ -368,6 +370,13 @@ def main():
             erros += executa_maismedicos(a.desde)
         except Exception as e:  # noqa: BLE001
             erros.append(f"maismedicos: {e}")
+    if quer("ibge") and not existe("ibge_municipios"):
+        try:
+            linhas = ibge_municipios.coleta()
+            grava("ibge_municipios", linhas)
+            log(f"[ibge] perfil Censo 2022: {len(linhas)} municípios")
+        except Exception as e:  # noqa: BLE001
+            erros.append(f"ibge: {e}")
     if quer("suspensao"):
         try:
             erros += executa_suspensao(a.desde)
