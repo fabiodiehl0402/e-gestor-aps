@@ -120,6 +120,7 @@ financiamento_resumo_uf/202609.csv.gz
 financiamento_resumo_uf/202610.csv.gz
 homologacao_equipes/202611.csv.gz
 homologacao_estabelecimentos/202611.csv.gz
+ibge_municipios.csv.gz
 maismedicos/202401.csv.gz
 maismedicos/202402.csv.gz
 maismedicos/202403.csv.gz
