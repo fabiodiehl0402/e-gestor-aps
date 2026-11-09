@@ -6,6 +6,9 @@ Fontes (APIs públicas do Ministério da Saúde, sem login):
 
 Saída em dados/ (CSV UTF-8, separador vírgula, compactado .csv.gz):
   financiamento/AAAAMM.csv.gz        pagamento completo por município e parcela
+  financiamento_resumo_uf/AAAAMM...  resumo por plano orçamentário, por UF
+  egestor/abas/<Aba>/download-pagamento-01-MM-AAAA.xlsx
+                                     planilhas iguais ao download do e-Gestor (Power BI)
   cobertura_aps/AAAAMM.csv.gz        cobertura potencial da APS por município
   cobertura_acs/AAAAMM.csv.gz        cobertura de ACS por município
   qualidade_componente/AAAAQn.csv.gz classificação final (Qualidade e CVAT) por equipe
@@ -46,6 +49,8 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+import abas_pagamento
+
 RAIZ = Path(__file__).resolve().parent.parent
 DADOS = RAIZ / "dados"
 
@@ -68,6 +73,8 @@ HEADERS = {
 HEADERS_SIAPS = {**HEADERS, "Origin": "https://siaps.saude.gov.br",
                  "Referer": "https://siaps.saude.gov.br/"}
 
+ABAS = DADOS / "egestor" / "abas"
+ABAS_DESDE = os.environ.get("ABAS_DESDE") or "202601"   # planilhas por aba a partir desta parcela
 RENOVAR = 3          # quantos períodos mais recentes são sempre baixados de novo
 TENTATIVAS = 5
 PARALELO = int(os.environ.get("PARALELO", "6"))
@@ -188,7 +195,8 @@ def q_financiamento(uf: str, parcela: str):
     d = http(f"{API}/financiamento/pagamento", {
         "unidadeGeografica": "MUNICIPIO", "coUf": uf, "coUfIbge": uf,
         "nuParcelaInicio": parcela, "nuParcelaFim": parcela, "tipoRelatorio": "COMPLETO"})
-    return {"financiamento": d.get("pagamentos") or []}
+    return {"financiamento": d.get("pagamentos") or [],
+            "financiamento_resumo_uf": d.get("resumosPlanosOrcamentarios") or []}
 
 
 def q_cobertura(uf: str, comp: str):
@@ -213,7 +221,16 @@ def q_homologacao(uf: str, _p: str):
                                                  {"coUf": uf}) or []}
 
 
-def executa_por_uf(nome: str, periodos: list[str], consulta, pastas: list[str]) -> list[str]:
+def depois_financiamento(per: str, resultado: dict, mudou: bool):
+    """Gera as planilhas por aba (formato do e-Gestor) usadas pelo Power BI."""
+    if per < ABAS_DESDE or not resultado.get("financiamento"):
+        return
+    if mudou or not abas_pagamento.existe(ABAS, per):
+        n = abas_pagamento.gera(ABAS, per, resultado["financiamento"], resultado["financiamento_resumo_uf"])
+        log(f"[financiamento] {per}: {n} planilhas por aba gravadas")
+
+
+def executa_por_uf(nome: str, periodos: list[str], consulta, pastas: list[str], depois=None) -> list[str]:
     """Roda consulta(uf, periodo) para todas as UFs e grava um arquivo por período."""
     if not periodos:
         log(f"[{nome}] nada novo")
@@ -235,12 +252,16 @@ def executa_por_uf(nome: str, periodos: list[str], consulta, pastas: list[str]) 
         if falhou:
             log(f"[{nome}] {per}: ERRO em alguma UF, período não gravado")
             continue
+        algum = False
         for pasta, linhas in resultado.items():
             if not linhas:
                 log(f"[{nome}] {per} {pasta}: vazio (não publicado ainda)")
                 continue
             mudou = grava(f"{pasta}/{per}", linhas)
+            algum = algum or mudou
             log(f"[{nome}] {per} {pasta}: {len(linhas)} linhas {'(atualizado)' if mudou else '(sem mudança)'}")
+        if depois:
+            depois(per, resultado, algum)
     return erros
 
 
@@ -290,22 +311,27 @@ def main():
 
     etapas = []
     if quer("financiamento"):
-        etapas.append(("financiamento", lambda: a_baixar(parcelas_financiamento(a.desde), ["financiamento"]),
-                       q_financiamento, ["financiamento"]))
+        def per_fin():
+            todas = parcelas_financiamento(a.desde)
+            base = a_baixar(todas, ["financiamento", "financiamento_resumo_uf"])
+            faltam_abas = [p for p in todas if p >= ABAS_DESDE and not abas_pagamento.existe(ABAS, p)]
+            return sorted(set(base) | set(faltam_abas))
+        etapas.append(("financiamento", per_fin, q_financiamento,
+                       ["financiamento", "financiamento_resumo_uf"], depois_financiamento))
     if quer("cobertura"):
         etapas.append(("cobertura", lambda: a_baixar(competencias_cnes(a.desde), ["cobertura_aps", "cobertura_acs"]),
-                       q_cobertura, ["cobertura_aps", "cobertura_acs"]))
+                       q_cobertura, ["cobertura_aps", "cobertura_acs"], None))
     if quer("qualidade"):
         pq = ["qualidade_componente", "qualidade_indicador", "qualidade_cvat"]
-        etapas.append(("qualidade", lambda: a_baixar(quadrimestres(a.desde), pq), q_qualidade, pq))
+        etapas.append(("qualidade", lambda: a_baixar(quadrimestres(a.desde), pq), q_qualidade, pq, None))
     if quer("homologacao"):
         mes = dt.date.today().strftime("%Y%m")
         etapas.append(("homologacao", lambda: [mes], q_homologacao,
-                       ["homologacao_equipes", "homologacao_estabelecimentos"]))
+                       ["homologacao_equipes", "homologacao_estabelecimentos"], None))
 
-    for nome, periodos, consulta, pastas in etapas:
+    for nome, periodos, consulta, pastas, depois in etapas:
         try:
-            erros += executa_por_uf(nome, periodos(), consulta, pastas)
+            erros += executa_por_uf(nome, periodos(), consulta, pastas, depois)
         except Exception as e:  # noqa: BLE001
             erros.append(f"{nome}: {e}")
             log(f"[{nome}] ERRO: {e}")
@@ -316,6 +342,8 @@ def main():
             erros.append(f"suspensao: {e}")
 
     indice()
+    if any(ABAS.glob("*/download-pagamento-*.xlsx")):
+        abas_pagamento.indice(ABAS)
     (DADOS / "_atualizacao.json").write_text(json.dumps({
         "executado_em": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "erros": erros}, ensure_ascii=False, indent=1), encoding="utf-8")

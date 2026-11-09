@@ -1,0 +1,756 @@
+{
+ "eSF": [
+  [
+   "Indicador de Equidade e Dimensionamento",
+   "dsFaixaIndiceEquidadeEsfEap"
+  ],
+  [
+   "Classificação Componente Vínculo",
+   "dsClassificacaoVinculoEsfEap"
+  ],
+  [
+   "Classificação Componente Qualidade",
+   "dsClassificacaoQualidadeEsfEap"
+  ],
+  [
+   "Teto eSF",
+   "qtTetoEsf"
+  ],
+  [
+   "Qtde. eSF Credenciadas",
+   "qtEsfCredenciado"
+  ],
+  [
+   "Qtde. eSF Homologadas",
+   "qtEsfHomologado"
+  ],
+  [
+   "Qtde. eSF Pagas",
+   "qtEsfTotalPgto"
+  ],
+  [
+   "Qtde. eSF Completas",
+   "qtEsf100pcPgto"
+  ],
+  [
+   "Qtde. eSF Incompletas - 75%",
+   "qtEsf75pcPgto"
+  ],
+  [
+   "Qtde. eSF Incompletas - 50%",
+   "qtEsf50pcPgto"
+  ],
+  [
+   "Qtde. eSF Incompletas - 25%",
+   "qtEsf25pcPgto"
+  ],
+  [
+   "Componente Equidade eSF",
+   "vlFixoEsf"
+  ],
+  [
+   "Vínculo e Acompanhamento territorial eSF",
+   "vlVinculoEsf"
+  ],
+  [
+   "Qualidade eSF",
+   "vlQualidadeEsf"
+  ],
+  [
+   "Parcela Adicional - Qualidade",
+   "vlPagamentoQualidadeExtraEsf"
+  ],
+  [
+   "Valor Total eSF",
+   "vlTotalEsf"
+  ],
+  [
+   "Implantação eSF",
+   "vlPagamentoImplantacaoEsf"
+  ]
+ ],
+ "eAP": [
+  [
+   "Indicador de Equidade e Dimensionamento",
+   "dsFaixaIndiceEquidadeEsfEap"
+  ],
+  [
+   "Classificação Componente Vínculo",
+   "dsClassificacaoVinculoEsfEap"
+  ],
+  [
+   "Classificação Componente Qualidade",
+   "dsClassificacaoQualidadeEsfEap"
+  ],
+  [
+   "Teto eAP",
+   "qtTetoEap"
+  ],
+  [
+   "Qtde. eAP Credenciadas",
+   "qtEapCredenciadas"
+  ],
+  [
+   "Qtde. eAP Homologadas",
+   "qtEapHomologado"
+  ],
+  [
+   "Qtde. eAP Pagas",
+   "qtEapTotalPgto"
+  ],
+  [
+   "Qtde. eAP 20h Completas",
+   "qtEap20hCompletas"
+  ],
+  [
+   "Qtde. eAP 20h Incompletas",
+   "qtEap20hIncompletas"
+  ],
+  [
+   "Qtde. eAP 30h Completas",
+   "qtEap30hCompletas"
+  ],
+  [
+   "Qtde. eAP 30h Incompletas",
+   "qtEap30hIncompletas"
+  ],
+  [
+   "Componente Equidade eAP",
+   "vlFixoEap"
+  ],
+  [
+   "Vínculo e Acompanhamento territorial eAP",
+   "vlVinculoEap"
+  ],
+  [
+   "Qualidade eAP",
+   "vlQualidadeEap"
+  ],
+  [
+   "Parcela Adicional - Qualidade",
+   "vlPagamentoQualidadeExtraEap"
+  ],
+  [
+   "Valor  Total eAP",
+   "vlTotalEap"
+  ],
+  [
+   "Implantação eAP",
+   "vlPagamentoImplantacaoEap"
+  ]
+ ],
+ "eMulti": [
+  [
+   "Classificação Componente Qualidade",
+   "dsClassificacaoQualidadeEmulti"
+  ],
+  [
+   "Teto eMulti Ampliada",
+   "qtTetoEmultiAmpliada"
+  ],
+  [
+   "Teto eMulti Complementar",
+   "qtTetoEmultiComplementar"
+  ],
+  [
+   "Teto eMulti Estratégica",
+   "qtTetoEmultiEstrategica"
+  ],
+  [
+   "Qtde. eMulti Credenciadas",
+   "qtEmultiCredenciadas"
+  ],
+  [
+   "Qtde. eMulti Homologadas",
+   "qtEmultiHomologado"
+  ],
+  [
+   "Qtde. eMulti Total Pagas",
+   "qtEmultiPagas"
+  ],
+  [
+   "Qtde. eMulti Ampliada Pagas",
+   "qtEmultiPagamentoAmpliada"
+  ],
+  [
+   "Qtde. eMulti Intermunicipal Pagas",
+   "qtEmultiPagamentoIntermunicipal"
+  ],
+  [
+   "Qtde. eMulti Complementar Pagas",
+   "qtEmultiPagamentoComplementar"
+  ],
+  [
+   "Qtde. eMulti Estratégica Pagas",
+   "qtEmultiPagamentoEstrategica"
+  ],
+  [
+   "Qtde. Atendimento Remoto",
+   "qtEmultiPagasAtendRemoto"
+  ],
+  [
+   "Custeio Manutenção Atendimento Remoto",
+   "vlPagamentoEmultiAtendimentoRemoto"
+  ],
+  [
+   "Valor Custeio eMulti",
+   "vlPagamentoEmultiCusteio"
+  ],
+  [
+   "Valor Componente Qualidade",
+   "vlPagamentoEmultiQualidade"
+  ],
+  [
+   "Parcela Adicional - Qualidade",
+   "vlPagamentoQualidadeEmulti"
+  ],
+  [
+   "Valor Total Custeio",
+   "vlTotalEmulti"
+  ],
+  [
+   "Implantação eMulti",
+   "vlPagamentoEmultiImplantacao"
+  ]
+ ],
+ "eSB": [
+  [
+   "Qtde. Teto eSB 40h",
+   "qtTetoSb40h"
+  ],
+  [
+   "Qtde. Teto eSB CH Diferenciada",
+   "qtTetoSbChDif"
+  ],
+  [
+   "Qtde. eSB 40h Credenciada",
+   "qtSb40hCredenciada"
+  ],
+  [
+   "Qtde. eSB CH diferenciada Credenciada",
+   "qtSb40hDifCredenciada"
+  ],
+  [
+   "Qtde. eSB 40h Homologada",
+   "qtSb40hHomologado"
+  ],
+  [
+   "Qtde. eSB CH diferenciada Homologada",
+   "qtSbChDifHomologado"
+  ],
+  [
+   "Qtde. eSB 40h Modalidade I Pagas",
+   "qtSbPagamentoModalidadeI"
+  ],
+  [
+   "Qtde. eSB 40h Modalidade II Pagas",
+   "qtSbPagamentoModalidadeII"
+  ],
+  [
+   "Qtde. eSB CH diferenciada - 20h semanais Pagas",
+   "qtSbPagamentoDifModalidade20Horas"
+  ],
+  [
+   "Qtde. eSB CH diferenciada - 30h semanais Pagas",
+   "qtSbPagamentoDifModalidade30Horas"
+  ],
+  [
+   "Qtde. eSB 40h Modalidade I - Quilombolas/ Assentados Pagas",
+   "qtSbEqpQuilombAssentModalI"
+  ],
+  [
+   "Qtde. eSB 40h Modalidade II - Quilombolas/ Assentados Pagas",
+   "qtSbEqpQuilombAssentModalII"
+  ],
+  [
+   "Qtde. eSB Implantação (somente ESB 40h)",
+   "qtSbEquipeImplantacao"
+  ],
+  [
+   "Valor custeio eSB 40h",
+   "vlPagamentoEsb40h"
+  ],
+  [
+   "Valor custeio eSB CH Diferenciada",
+   "vlPagamentoEsbChDiferenciada"
+  ],
+  [
+   "Valor Implantação (somente ESB 40h)",
+   "vlPagamentoImplantacaoEsb40h"
+  ],
+  [
+   "Valor Componente Qualidade (eSB 40h)",
+   "vlPagamentoEsb40hQualidade"
+  ],
+  [
+   "Valor Componente Qualidade (eSB CH Diferenciada)",
+   "vlPagamentoEsbChDifQualidade"
+  ],
+  [
+   "Parcela Adicional - Qualidade",
+   "vlPagamentoQualidadeExtraEsb40H"
+  ]
+ ],
+ "UOM": [
+  [
+   "Qtde. UOM Credenciada",
+   "qtUomCredenciada"
+  ],
+  [
+   "Qtde. UOM Homologada",
+   "qtUomHomologado"
+  ],
+  [
+   "Qtde. UOM Paga",
+   "qtUomPgto"
+  ],
+  [
+   "Valor Custeio",
+   "vlPagamentoUom"
+  ],
+  [
+   "Valor Implantação",
+   "vlPagamentoUomImplantacao"
+  ]
+ ],
+ "CEO": [
+  [
+   "CEO Municipal",
+   "vlPagamentoCeoMunicipal"
+  ],
+  [
+   "CEO Estadual",
+   "vlPagamentoCeoEstadual"
+  ]
+ ],
+ "LRPD": [
+  [
+   "LRPD Municipal",
+   "vlPagamentoLrpdMunicipal"
+  ],
+  [
+   "LRPD Estadual",
+   "vlPagamentoLrpdEstadual"
+  ]
+ ],
+ "SESB": [
+  [
+   "Custeio",
+   "vlPagamentoSesb"
+  ],
+  [
+   "Desempenho",
+   "vlPagamentoDesempenhoSesb"
+  ],
+  [
+   "Total",
+   "vlTotalPagamentoSesb"
+  ]
+ ],
+ "eCR": [
+  [
+   "Qtde. eCR Credenciadas",
+   "qtCnrCredenciado"
+  ],
+  [
+   "Qtde. eCR Homologadas",
+   "qtCnrHomologado"
+  ],
+  [
+   "Qtde. eCR Modalidade I Pagas",
+   "qtCnrPagamentoModalidadeI"
+  ],
+  [
+   "Qtde. eCR Modalidade II Pagas",
+   "qtCnrPagamentoModalidadeII"
+  ],
+  [
+   "Qtde. eCR Modalidade III Pagas",
+   "qtCnrPagamentoModalidadeIII"
+  ],
+  [
+   "Custeio eCR",
+   "vlPagamentoCnr"
+  ],
+  [
+   "Qualidade eCR",
+   "vlPagamentoQualidadeCnr"
+  ],
+  [
+   "Implantação eCR",
+   "vlPagamentoImplantacaoCnr"
+  ],
+  [
+   "Valor Total",
+   "vlTotalPagamentoCnr"
+  ]
+ ],
+ "eSFR": [
+  [
+   "Qtde. eSFR Credenciado",
+   "qtRibeirinhaCredenciado"
+  ],
+  [
+   "Qtde. eSFR Homologado",
+   "qtRibeirinhaHomologado"
+  ],
+  [
+   "Qtde. eSFR Pago",
+   "qtRibeirinhaPagas"
+  ],
+  [
+   "Custeio",
+   "vlPagamentoEsfrb"
+  ],
+  [
+   "Qualidade",
+   "vlPagamentoEsfrbQualidade"
+  ],
+  [
+   "Vínculo e Acompanhamento Territorial",
+   "vlPagamentoEsfrbVinculoAcomp"
+  ],
+  [
+   "Implantação",
+   "vlPagamentoEsfrbImplantacao"
+  ],
+  [
+   "Parcela Adicional - Qualidade",
+   "vlPagamentoEsfrbExtraQualidade"
+  ],
+  [
+   "Qtde. Embarcação Extra",
+   "qtEmbarcacaoRibeirinha"
+  ],
+  [
+   "Qtde. Unidade Apoio Extra",
+   "qtUnidadeApoioRibeirinha"
+  ],
+  [
+   "Qtde. Microscopista Extra",
+   "qtMicroscopistaRibeirinha"
+  ],
+  [
+   "Qtde. Auxiliar Enf. Extra",
+   "qtAuxEnfermagemRibeirinha"
+  ],
+  [
+   "Qtde. Auxiliar SB Extra",
+   "qtAuxSaudeBucalRibeirinha"
+  ],
+  [
+   "Qtde. Prof. Nível Superior Extra",
+   "qtProfNivelSupRibeirinha"
+  ],
+  [
+   "Custeio Componente Extra",
+   "vlPagamentoEsfrbExtra"
+  ]
+ ],
+ "ACS": [
+  [
+   "Qtde. Teto",
+   "qtTetoAcs"
+  ],
+  [
+   "Qtde. ACS Credenciado",
+   "qtAcsDiretoCredenciado"
+  ],
+  [
+   "Qtde. ACS (95% e 5%) Pago",
+   "qtAcsDiretoPgto"
+  ],
+  [
+   "Valor ACS (95% e 5%)",
+   "vlPagamentoAcsDireto"
+  ],
+  [
+   "Parcela Extra",
+   "vlPagamentoParcelaExtraAcsDireto"
+  ],
+  [
+   "Total",
+   "vlTotalAcsDireto"
+  ]
+ ],
+ "ACS_Ind": [
+  [
+   "Limite da Qtde. ACS*",
+   "qtAcsIndiretoCredenciado"
+  ],
+  [
+   "Qtde. ACS pago",
+   "qtAcsIndiretoPgto"
+  ],
+  [
+   "Valor",
+   "vlPagamentoAcsIndireto"
+  ],
+  [
+   "Parcela Extra",
+   "vlPagamentoParcelaExtraAcsIndireto"
+  ],
+  [
+   "Total",
+   "vlTotalAcsIndireto"
+  ]
+ ],
+ "UBSF": [
+  [
+   "Qtde. UBSF Credenciado",
+   "qtUbsfCredenciado"
+  ],
+  [
+   "Qtde. UBSF Homologado",
+   "qtUbsfHomologado"
+  ],
+  [
+   "Qtde. UBSF Pago",
+   "qtUbsfPgto"
+  ],
+  [
+   "Custeio",
+   "vlPagamentoUbsf"
+  ],
+  [
+   "Qtde. Embarcação Extra",
+   "qtEmbarcacaoFluvial"
+  ],
+  [
+   "Qtde. Unidade Apoio Extra",
+   "qtUnidadeApoioFluvial"
+  ],
+  [
+   "Qtde. Microscopista Extra",
+   "qtMicroscopistaFluvial"
+  ],
+  [
+   "Qtde. Auxiliar Enf. Extra",
+   "qtAuxEnfermagemFluvial"
+  ],
+  [
+   "Qtde. Auxiliar SB Extra",
+   "qtAuxSaudeBucalFluvial"
+  ],
+  [
+   "Qtde. Prof. Nível Superior Extra",
+   "qtProfNivelSupFluvial"
+  ],
+  [
+   "Custeio Componente Extra",
+   "vlPagamentoUbsfExtra"
+  ]
+ ],
+ "Microscopista": [
+  [
+   "Qtde. Microscopista Credenciado",
+   "qtMicroscopistaCredenciado"
+  ],
+  [
+   "Qtde. Microscopista Pago",
+   "qtMicroscopistaPgto"
+  ],
+  [
+   "Valor",
+   "vlPagamentoMicroscopista"
+  ],
+  [
+   "Parcela Extra",
+   "vlPagamentoParcelaExtraMicroscopista"
+  ],
+  [
+   "Total",
+   "vlTotalMicroscopista"
+  ]
+ ],
+ "Residência": [
+  [
+   "Qtde. Médico Residente Credenciado",
+   "qtResidenteMedicoCredenciado"
+  ],
+  [
+   "Qtde. Enfermeiro Residente Credenciado",
+   "qtResidenteEnfermeiroCredenciado"
+  ],
+  [
+   "Qtde. Cirurgião-Dentista Residente Credenciado",
+   "qtResidenteDentistaCredenciado"
+  ],
+  [
+   "Qtde. Médico Residente Pago",
+   "qtResidenteMedicoPagamento"
+  ],
+  [
+   "Qtde. Enfermeiro Residente Pago",
+   "qtResidenteEnfermeiroPagamento"
+  ],
+  [
+   "Qtde. Cirurgião-Dentista Residente Pago",
+   "qtResidenteDentistaPagamento"
+  ],
+  [
+   "Valor",
+   "vlPagamentoResidencia"
+  ]
+ ],
+ "eAPP": [
+  [
+   "Qtde. eAPP Municipal Credenciada",
+   "soma:^qtEapp\\d+CredenciadaMunicipal$"
+  ],
+  [
+   "Qtde. eAPP Municipal Paga",
+   "soma:^qtEapp\\d+PagamentoMunicipal$"
+  ],
+  [
+   "Valor eAPP Municipal",
+   "vlEappMunicipal"
+  ],
+  [
+   "Qualidade eAPP Municipal",
+   "nd:"
+  ],
+  [
+   "Implantação eAPP Municipal",
+   "nd:"
+  ],
+  [
+   "Qtde. eAPP Estadual Credenciada",
+   "soma:^qtEapp\\d+CredenciadaEstadual$"
+  ],
+  [
+   "Qtde. eAPP Estadual Paga",
+   "soma:^qtEapp\\d+PagamentoEstadual$"
+  ],
+  [
+   "Valor eAPP Estadual",
+   "vlEappEstadual"
+  ],
+  [
+   "Qualidade eAPP Estadual",
+   "nd:"
+  ],
+  [
+   "Implantação eAPP Estadual",
+   "nd:"
+  ]
+ ],
+ "PNAISARI": [
+  [
+   "Qtde. de Estabelecimentos",
+   "qtPagamentoPnaisari"
+  ],
+  [
+   "Valor",
+   "vlPagamentoPnaisari"
+  ]
+ ],
+ "IAF": [
+  [
+   "Qtde. Estabelecimentos Credenciados",
+   "qtIafCredenciado"
+  ],
+  [
+   "Qtde. Estabelecimentos Pagos",
+   "qtIafPgto"
+  ],
+  [
+   "Valor",
+   "vlPagamentoIaf"
+  ]
+ ],
+ "Academia da Saúde": [
+  [
+   "Qtde. Estabelecimentos Credenciados",
+   "qtAcademiaSaudeCredenciado"
+  ],
+  [
+   "Qtde. Estabelecimentos Pagos",
+   "qtAcademiaSaudePgto"
+  ],
+  [
+   "Qtde. em trâmite de descredenciamento",
+   "qtAcademiaSaudeDescredenciamento"
+  ],
+  [
+   "Valor",
+   "vlPagamentoAcademia"
+  ]
+ ],
+ "Inc. Transição": [
+  [
+   "Valor",
+   "vlPagamentoIncentivoTransicao"
+  ]
+ ],
+ "Inc. Financ. Crit. Populacional": [
+  [
+   "População",
+   "qtPopulacao"
+  ],
+  [
+   "Ano (estimativa)",
+   "nuAnoRefPopulacaoIbge"
+  ],
+  [
+   "Valor",
+   "vlPagamentoIncentivoPopulacional"
+  ]
+ ],
+ "Manut. Pagamento": [
+  [
+   "Valor",
+   "vlPagamentoManutencaoPgto"
+  ]
+ ],
+ "Resumo": [
+  [
+   "Comp. CNES",
+   "nuCompCnes"
+  ],
+  [
+   "Parcela",
+   "nuParcela"
+  ],
+  [
+   "Plano Orcamentário",
+   "dsPlanoOrcamentario"
+  ],
+  [
+   "Gestão",
+   "dsEsferaAdministrativa"
+  ],
+  [
+   "Valor Integral",
+   "vlIntegral"
+  ],
+  [
+   "Ajuste",
+   "vlAjuste"
+  ],
+  [
+   "Desconto",
+   "vlDesconto"
+  ],
+  [
+   "Valor efetivo de repasse",
+   "vlEfetivoRepasse"
+  ],
+  [
+   "Valor da Implantação",
+   "vlImplantacao"
+  ],
+  [
+   "Ajuste da Implantação",
+   "vlAjusteImplantacao"
+  ],
+  [
+   "Desconto da Implantação",
+   "vlDescontoImplantacao"
+  ],
+  [
+   "Valor total da implantação",
+   "vlTotalImplantacao"
+  ]
+ ]
+}
