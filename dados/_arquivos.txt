@@ -186,6 +186,7 @@ suspensao_equipes/202605.csv.gz
 suspensao_equipes/202606.csv.gz
 suspensao_equipes/202607.csv.gz
 suspensao_equipes/202608.csv.gz
+suspensao_equipes/202609.csv.gz
 suspensao_estabelecimentos/202505.csv.gz
 suspensao_estabelecimentos/202506.csv.gz
 suspensao_estabelecimentos/202507.csv.gz
@@ -202,6 +203,7 @@ suspensao_estabelecimentos/202605.csv.gz
 suspensao_estabelecimentos/202606.csv.gz
 suspensao_estabelecimentos/202607.csv.gz
 suspensao_estabelecimentos/202608.csv.gz
+suspensao_estabelecimentos/202609.csv.gz
 suspensao_profissionais/202505.csv.gz
 suspensao_profissionais/202506.csv.gz
 suspensao_profissionais/202507.csv.gz
@@ -218,3 +220,4 @@ suspensao_profissionais/202605.csv.gz
 suspensao_profissionais/202606.csv.gz
 suspensao_profissionais/202607.csv.gz
 suspensao_profissionais/202608.csv.gz
+suspensao_profissionais/202609.csv.gz
